@@ -30,13 +30,13 @@
 
 <section data-markdown><script type="text/template">
 
-Передача данных от сервера к клиенту
+# Передача данных от сервера к клиенту
 
 </script></section>
 
 <section data-markdown><script type="text/template">
 
-### Проблема
+## Проблема
 
 Нужно строить приложение, моментально реагирующие на изменения:
 - отправка новых сообщений;
@@ -45,7 +45,7 @@
 
 ***
 
-### Зачем?
+## Зачем?
 
 Чтобы пользователь не пропустил важные события.
 
@@ -78,7 +78,7 @@
 
 ***
 
-### Server-sent events
+### Server-sent events (EventSource)
 
 - Постоянное соединение с сервером
 - Только текстовые данные
@@ -87,6 +87,74 @@
 
 </script></section>
 
+<section data-markdown><script type="text/template">
+
+# SignalR
+    
+</script></section>
+    
+<section data-markdown><script type="text/template">
+
+## Что это
+
+Библиотека, предназначенная для использования с ASP.NET7
+Абстракция на 4 транспортами:
+- WebSockets (основной транспорт);
+- EventSource;
+- Long polling;
+- iframe с отдельным соединением (только для Internet Explorer)
+
+***
+
+## Зачем
+Чтобы не реализовывать самим использование транспорта, переключение между ними и реконнект.
+
+***
+
+Есть два варианта использования:
+- Persistent Connection (низкоуровневое управление);
+- хабы (абстракция над PC, поддерживает вызов комманд как со стороны сервера, так и с клиента, описываются в виде классов с методами комманд).
+
+***
+
+## Использование на стороне сервера
+
+```cs
+public class CommentsHub: Hub
+{
+    public async Task SendComment(string user, string message)
+    {
+        await Clients.All.SendAsync("ReceiveComment", user, message).ConfigureAwait(false);
+    }
+}
+...
+services.AddSignalR();
+...
+endpoints.MapHub<ChatHub>("/chatHub");
+```
+
+***
+
+Клиенты есть на JavaScript и на C#
+</script></section>    
+
+
+<section data-markdown><script type="text/template">
+
+# Blazor
+    
+</script></section>
+    
+<section data-markdown><script type="text/template">
+## Что это
+
+Фреймворк для разработки веб-клиентов на C#, HTMl и CSS
+
+## Зачем
+
+Чтобы разрабатывать интерактивные веб-приложения на C#
+
+</script></section>
 
 </div></div>
 </body>
