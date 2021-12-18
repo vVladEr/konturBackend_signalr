@@ -150,9 +150,48 @@ endpoints.MapHub<ChatHub>("/chatHub");
 
 Фреймворк для разработки веб-клиентов на C#, HTMl и CSS
 
+***
+
 ## Зачем
 
 Чтобы разрабатывать интерактивные веб-приложения на C#
+
+***
+
+## Особенности
+Три вида рендеринга:
+- статический (вставка готового кода в HTML без интерактивности);
+- серверный (для получения команд использует SignalR);
+- клиентский (использует WebAssembly, тащит .NET Runtime к клиенту).
+
+Можно использовать все библиотеки, доступные для C#.
+
+***
+## Компоненты
+
+Содержат разметку и код в одном файле
+```cs
+<div class="card" style="width:22rem">
+    <div class="card-body">
+        <h3 class="card-title">@Title</h3>
+        <p class="card-text">@ChildContent</p>
+        <button @onclick="OnYes">Yes!</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    private void OnYes()
+    {
+        Console.WriteLine("Write to the console in C#! 'Yes' button selected.");
+    }
+}
+```
 
 </script></section>
 
