@@ -143,10 +143,10 @@ endpoints.MapHub<ChatHub>("/chatHub");
 <div>
     <button id="sendButton">Отправить</button>
 </div>
-``
-
+```
 
 ## 2.3. Клиентская часть.
+
 Для начала установим менеджер пакетов `libman` командой
 ```
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
