@@ -128,7 +128,7 @@ services.AddSignalR();
 ```
 в `ConfigureServices`, а в `Configure` - эту строку:
 ```cs
-endpoints.MapHub<ChatHub>("/chatHub");
+endpoints.MapHub<CommentsHub>("/commentsHub");
 ```
 
 ## 2.2. Отправка сообщений
