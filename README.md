@@ -286,6 +286,8 @@ endpoints.MapBlazorHub();
 services.AddServerSideBlazor();
 ```
 
+Также очистите опцию `UseStaticFiles` (оставьте только вызов `app.UseStaticFiles()`);
+
 Создайте в корне проекта файл `_Imports.razor` с содержимым
 ```cs
 @using Microsoft.AspNetCore.Authorization;
@@ -301,6 +303,7 @@ services.AddServerSideBlazor();
 ...
 <script src="_framework/blazor.server.js"></script>
 ```
+
 
 Проверьте, что после этого на странице какой-нибудь новости отоюражаются комментарии.
 
