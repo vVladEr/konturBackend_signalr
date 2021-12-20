@@ -175,7 +175,7 @@ EOF
 ```
 и `zsh -l`
 
-После установки libman добавим клиентскую библиотеку:
+После установки libman добавим клиентскую библиотеку (вызывайте из проекта BadNews):
 ```
 libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
 ```
