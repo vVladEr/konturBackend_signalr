@@ -1,5 +1,6 @@
 ﻿@using BadNews.Elevation
 @model BadNews.Models.News.FullArticleModel
+<script src="/lib/jquery/dist/jquery.min.js"></script>
 
 <main role="main" class="container">
     <div class="row">
@@ -17,6 +18,19 @@
                     </form>
                 }
                 @Html.Raw(Model.Article.ContentHtml)
+                <div id="comments">
+                    <script type="text/javascript">
+                        $.get(`/api/news/@Model.Article.Id.ToString()/comments`, function (data) {
+                            const commentsDiv = document.getElementById('comments');
+
+                            for (const comment of data.comments) {
+                                const li = document.createElement("li");
+                                li.textContent = `${comment.user} говорит: ${comment.value}`;
+                                commentsDiv.appendChild(li);
+                            }
+                        });
+                    </script>
+                </div>
             </div>
         </div>
 

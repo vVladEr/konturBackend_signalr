@@ -9,9 +9,9 @@ namespace BadNews.Controllers
     [ApiController]
     public class CommentsController : ControllerBase
     {
-        private readonly CommentsRepository commentsRepository;
+        private readonly ICommentsRepository commentsRepository;
 
-        public CommentsController(CommentsRepository commentsRepository)
+        public CommentsController(ICommentsRepository commentsRepository)
         {
             this.commentsRepository = commentsRepository;
         }
